@@ -230,6 +230,7 @@ fun SearchScreen(
                         Column(modifier = Modifier.fillMaxSize()) {
                             TorrentFilter(
                                 filter = uiState.torrentFilter,
+                                onToggleExactMatch = viewModel::toggleExactMatch,
                                 onToggleDeadTorrents = viewModel::toggleDeadTorrents,
                                 onToggleHideViewed = viewModel::toggleHideViewedTorrents,
                                 onToggleSearchProvider = viewModel::toggleSearchProviderResults,
@@ -260,6 +261,8 @@ fun SearchScreen(
                                 onShowErrors = { showSearchErrors = true },
                                 isRefreshing = searchState is SearchState.ResultsAvailable.Refreshing,
                                 onRefresh = viewModel::refreshSearchResults,
+                                hiddenTorrentsCount = uiState.hiddenTorrentsCount,
+                                onShowAllResults = viewModel::disableExactMatch,
                                 viewedTorrentIds = uiState.viewedTorrentIds,
                                 lazyListState = torrentListState.lazyListState,
                             )

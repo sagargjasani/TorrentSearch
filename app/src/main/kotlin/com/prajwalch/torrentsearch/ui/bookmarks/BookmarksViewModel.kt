@@ -65,7 +65,7 @@ class BookmarksViewModel(
 
             val filteredBookmarks = bookmarks
                 .filterIf(!nsfwModeEnabled, TorrentFilters.isSfw())
-                .filterIf(filterQuery.isNotBlank(), TorrentFilters.matchesQuery(filterQuery))
+                .filterIf(filterQuery.isNotBlank(), TorrentFilters.matchesAllWords(filterQuery))
 
             if (filteredBookmarks.isEmpty()) {
                 BookmarksState.EmptyNoMatches

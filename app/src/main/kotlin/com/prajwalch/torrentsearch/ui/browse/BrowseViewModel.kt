@@ -411,7 +411,7 @@ private class TorrentsProcessor(
             if (!filterConfig.deadTorrents) add(TorrentFilters.isAlive())
             if (filterConfig.hideViewed) add(TorrentFilters.notViewed(viewedTorrentIds))
             if (filterConfig.searchQuery.isNotBlank())
-                add(TorrentFilters.matchesQuery(filterConfig.searchQuery))
+                add(TorrentFilters.matchesAllWords(filterConfig.searchQuery))
             if (queryParams.category != Category.All)
                 add(TorrentFilters.matchesCategory(queryParams.category))
         }

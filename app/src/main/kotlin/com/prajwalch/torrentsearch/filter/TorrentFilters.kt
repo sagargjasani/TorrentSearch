@@ -25,14 +25,6 @@ object TorrentFilters {
     fun matchesCategory(category: Category): TorrentFilter =
         { torrent -> category == torrent.category }
 
-    fun matchesQuery(query: String): TorrentFilter {
-        val words = query.split(' ', ignoreCase = true).filter { it.isNotBlank() }
-
-        return { torrent ->
-            words.any { word -> torrent.name.contains(word, ignoreCase = true) }
-        }
-    }
-
     /**
      * Keeps torrents whose name contains every word of the given query.
      *
